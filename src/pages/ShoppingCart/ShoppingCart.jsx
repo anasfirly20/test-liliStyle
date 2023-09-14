@@ -10,6 +10,7 @@ export default function ShoppingCart() {
   const [dataItems, setDataItems] = useState(null);
   const [isCheckedAll, setIsCheckedAll] = useState(true);
 
+  // Add a new isChecked prop & store the data from API inside a new state
   useEffect(() => {
     if (data) {
       const updatedData = data.map((item) => ({
@@ -20,6 +21,7 @@ export default function ShoppingCart() {
     }
   }, [data]);
 
+  // handleCheckAll
   const handleCheckedAll = (value) => {
     setIsCheckedAll(value);
     setDataItems((prevDataItems) =>
@@ -27,6 +29,7 @@ export default function ShoppingCart() {
     );
   };
 
+  // handleCheck for single checkbox
   const toggleItemChecked = (itemId) => {
     setDataItems((prevDataItems) =>
       prevDataItems.map((item) =>
@@ -35,6 +38,7 @@ export default function ShoppingCart() {
     );
   };
 
+  // handle delete all
   const handleDeleteAll = () => {
     if (isCheckedAll) {
       setDataItems([]);
@@ -42,6 +46,11 @@ export default function ShoppingCart() {
       toast.success("All items in the cart have been deleted");
     }
   };
+
+  // DEBUG
+  useEffect(() => {
+    // console.log(">>", dataItems);
+  }, [dataItems]);
 
   return (
     <article className="min-h-screen pt-longer2 px-longer4 flex justify-between">
@@ -76,13 +85,15 @@ export default function ShoppingCart() {
           {dataItems?.map((item) => {
             return (
               <CardItem
-                key={item.id}
+                key={item?.id}
+                id={item?.id}
                 thumbnailUrl={item?.thumbnailUrl}
                 name={item?.name}
                 price={item?.price}
                 quantity={item?.quantity}
                 isChecked={item?.isChecked}
-                onToggleChecked={() => toggleItemChecked(item.id)}
+                toggleItemChecked={toggleItemChecked}
+                setDataItems={setDataItems}
               />
             );
           })}

@@ -3,12 +3,34 @@ import { Checkbox } from "@nextui-org/checkbox";
 
 export default function CardItem({
   thumbnailUrl,
+  id,
   name,
   price,
   quantity,
   isChecked,
-  onToggleChecked,
+  toggleItemChecked,
+  setDataItems,
 }) {
+  // handleIncrement
+  const handleIncrement = (itemId) => {
+    setDataItems((prevDataItems) =>
+      prevDataItems.map((item) =>
+        item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  // handleDecrement
+  const handleDecrement = (itemId) => {
+    if (quantity > 1) {
+      setDataItems((prevDataItems) =>
+        prevDataItems.map((item) =>
+          item.id === itemId ? { ...item, quantity: item.quantity - 1 } : item
+        )
+      );
+    }
+  };
+
   return (
     <section className="flex justify-between border-b pb-5">
       <section className="flex gap-2">
@@ -17,7 +39,7 @@ export default function CardItem({
           color="warning"
           className="self-start"
           isSelected={isChecked}
-          onValueChange={onToggleChecked}
+          onValueChange={() => toggleItemChecked(id)}
         />
         <figure className="rounded-lg w-32 h-28 overflow-hidden">
           <img src={thumbnailUrl} alt={name} className="object-contain" />
@@ -36,11 +58,24 @@ export default function CardItem({
           />
         </button>
         <section className="flex items-center gap-3">
-          <button type="button" className="border-2 rounded-full">
-            <Icon icon="ri:subtract-fill" fontSize={25} className=" p-1" />
+          <button
+            type="button"
+            className={`border-2 rounded-full ${
+              quantity === 1
+                ? "border-custom-gray-2"
+                : "border-custom-yellow active:opacity-70"
+            }`}
+            onClick={() => handleDecrement(id)}
+            disabled={quantity === 1 ? true : false}
+          >
+            <Icon icon="ri:subtract-fill" fontSize={25} className="p-1" />
           </button>
           <p className="border-b w-full px-6">{quantity}</p>
-          <button type="button" className="border-2 rounded-full">
+          <button
+            type="button"
+            className="border-2 rounded-full border-custom-yellow active:opacity-70"
+            onClick={() => handleIncrement(id)}
+          >
             <Icon icon="material-symbols:add" fontSize={25} className=" p-1" />
           </button>
         </section>
