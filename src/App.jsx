@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
         <Toaster
           toastOptions={{
-            duration: 2000,
+            duration: 3000,
           }}
         />
         <Suspense

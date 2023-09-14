@@ -1,18 +1,13 @@
-// React query
-import { useQuery, useMutation } from "react-query";
-
-// Api routes
+import { useState, useEffect } from "react";
+import { useQuery } from "react-query";
 import { getAllCarts } from "../../api/routes/Carts";
-
-// Miscellaneous
 import CardItem from "../../components/CardItem";
-import { useState } from "react";
-import { useEffect } from "react";
+import toast from "react-hot-toast";
+import { Checkbox } from "@nextui-org/checkbox";
 
 export default function ShoppingCart() {
   const { data } = useQuery(["cartsData"], () => getAllCarts());
   const [dataItems, setDataItems] = useState(null);
-
   const [isCheckedAll, setIsCheckedAll] = useState(true);
 
   useEffect(() => {
@@ -23,10 +18,13 @@ export default function ShoppingCart() {
       }));
       setDataItems(updatedData);
     }
-  }, [data, isCheckedAll]);
+  }, [data]);
 
-  const handleCheckedAll = (e) => {
-    setIsCheckedAll(e.target.checked);
+  const handleCheckedAll = (value) => {
+    setIsCheckedAll(value);
+    setDataItems((prevDataItems) =>
+      prevDataItems.map((item) => ({ ...item, isChecked: value }))
+    );
   };
 
   const toggleItemChecked = (itemId) => {
@@ -37,22 +35,42 @@ export default function ShoppingCart() {
     );
   };
 
+  const handleDeleteAll = () => {
+    if (isCheckedAll) {
+      setDataItems([]);
+      setIsCheckedAll(false);
+      toast.success("All items in the cart have been deleted");
+    }
+  };
+
   return (
     <article className="min-h-screen pt-longer2 px-longer4 flex justify-between">
       <section className="w-[68%]">
-        <h1 className="font-bold text-2xl border-b pb-4">Cart</h1>
-        <section className="flex justify-between items-center border-b-2 w-full">
-          <section className="flex gap-2 py-4">
-            <input
-              type="checkbox"
-              checked={isCheckedAll}
-              onChange={handleCheckedAll}
-            />
-            <p className="font-semibold">Pilih semua</p>
+        <section className="sticky top-0 bg-custom-white z-20">
+          <h1 className="font-bold text-2xl border-b pb-4">Cart</h1>
+          <section className="flex justify-between items-center border-b-2 w-full">
+            <section className="flex gap-2 py-4">
+              <Checkbox
+                size="md"
+                color="warning"
+                isSelected={isCheckedAll}
+                onValueChange={handleCheckedAll}
+              />
+              <p className="font-semibold">Pilih semua</p>
+            </section>
+            <button
+              type="button"
+              className={`animate ${
+                !isCheckedAll
+                  ? "cursor-not-allowed text-custom-gray"
+                  : "active:opacity-80 text-blue-400"
+              }`}
+              onClick={handleDeleteAll}
+              disabled={!isCheckedAll}
+            >
+              Delete
+            </button>
           </section>
-          <button type="button" className="text-blue-400">
-            Delete
-          </button>
         </section>
         <section className="grid gap-10 py-10">
           {dataItems?.map((item) => {
@@ -64,7 +82,6 @@ export default function ShoppingCart() {
                 price={item?.price}
                 quantity={item?.quantity}
                 isChecked={item?.isChecked}
-                isCheckedAll={isCheckedAll}
                 onToggleChecked={() => toggleItemChecked(item.id)}
               />
             );

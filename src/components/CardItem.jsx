@@ -1,23 +1,23 @@
 import { Icon } from "@iconify/react";
-import { useEffect } from "react";
+import { Checkbox } from "@nextui-org/checkbox";
 
 export default function CardItem({
   thumbnailUrl,
   name,
   price,
   quantity,
-  isCheckedAll,
   isChecked,
   onToggleChecked,
 }) {
   return (
     <section className="flex justify-between border-b pb-5">
       <section className="flex gap-2">
-        <input
-          type="checkbox"
+        <Checkbox
+          size="md"
+          color="warning"
           className="self-start"
-          checked={isCheckedAll ? isChecked : false}
-          onChange={onToggleChecked}
+          isSelected={isChecked}
+          onValueChange={onToggleChecked}
         />
         <figure className="rounded-lg w-32 h-28 overflow-hidden">
           <img src={thumbnailUrl} alt={name} className="object-contain" />
