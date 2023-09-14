@@ -1,4 +1,7 @@
-export default function CardTotal({ dataItems }) {
+// utils
+import { formatNumber } from "../helpers/utils";
+
+export default function CardTotal({ dataItems, isCheckedAll }) {
   // Total Quantity of all items
   const totalQuantity = dataItems?.reduce((total, item) => {
     return total + item.quantity;
@@ -16,21 +19,21 @@ export default function CardTotal({ dataItems }) {
       </h1>
       <section className="flex justify-between mt-5 border-b pb-5">
         <p className="text-base text-custom-gray w-fit">
-          Total Harga ({totalQuantity} barang)
+          Total Harga ({isCheckedAll ? totalQuantity : 0} barang)
         </p>
         <p className="text-base text-custom-gray w-[30%] text-end break-words">
-          Rp.{totalPrice * totalQuantity}
+          Rp{isCheckedAll ? formatNumber(totalPrice * totalQuantity) : 0}
         </p>
       </section>
       <section className="flex justify-between mt-5">
         <h3 className="font-bold text-xl text-custom-black">Total Harga:</h3>
         <h3 className="font-bold text-xl text-custom-black break-words text-end w-[40%]">
-          Rp.{totalPrice * totalQuantity}
+          Rp{isCheckedAll ? formatNumber(totalPrice * totalQuantity) : 0}
         </h3>
       </section>
       <section className="mt-5">
         <button className="bg-custom-yellow py-2 rounded-lg w-full text-white font-semibold text-lg active:opacity-80">
-          Beli ({totalQuantity})
+          Beli ({isCheckedAll ? totalQuantity : 0})
         </button>
       </section>
     </section>

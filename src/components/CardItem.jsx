@@ -1,5 +1,7 @@
 import { Icon } from "@iconify/react";
 import { Checkbox } from "@nextui-org/checkbox";
+import { Link } from "react-router-dom";
+import { formatNumber } from "../helpers/utils";
 
 import toast from "react-hot-toast";
 
@@ -58,10 +60,12 @@ export default function CardItem({
         </figure>
         <section className="flex flex-col justify-between">
           <section>
-            <h4>{name}</h4>
-            <h4 className="text-sm">Rp.{price}</h4>
+            <Link to={`/${id}`}>{name}</Link>
+            <h4 className="text-sm">Rp{formatNumber(price)}</h4>
           </section>
-          <h4 className="font-semibold">Total Harga: Rp.{price * quantity}</h4>
+          <h4 className="font-semibold">
+            Total Harga: Rp{formatNumber(price * quantity)}
+          </h4>
         </section>
       </section>
       <section className="flex gap-12 self-end">
