@@ -1,8 +1,10 @@
-import { Icon } from "@iconify/react";
+// NextUI
 import { Checkbox } from "@nextui-org/checkbox";
+
+// Miscellaneous
+import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
 import { formatNumber } from "../helpers/utils";
-
 import toast from "react-hot-toast";
 
 export default function CardItem({
@@ -56,7 +58,14 @@ export default function CardItem({
           onValueChange={() => toggleItemChecked(id)}
         />
         <figure className="rounded-lg w-32 h-28 overflow-hidden">
-          <img src={thumbnailUrl} alt={name} className="object-contain" />
+          <Link to={`/${id}`}>
+            <img
+              loading="lazy"
+              src={thumbnailUrl}
+              alt={name}
+              className="object-contain"
+            />
+          </Link>
         </figure>
         <section className="flex flex-col justify-between">
           <section>
