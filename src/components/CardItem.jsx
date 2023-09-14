@@ -40,7 +40,7 @@ export default function CardItem({
     setDataItems((prevDataItems) =>
       prevDataItems.filter((item) => item.id !== itemId)
     );
-    toast.success(`${name} has been deleted`);
+    toast.success(`${name} has been removed from the cart`);
   };
 
   return (

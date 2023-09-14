@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
-import { useQuery } from "react-query";
+
+// Api
 import { getAllCarts } from "../../api/routes/Carts";
+
+// Components
 import CardItem from "../../components/CardItem";
+import CardTotal from "../../components/CardTotal";
+
+// Miscellaneous
+import { useQuery } from "react-query";
 import toast from "react-hot-toast";
 import { Checkbox } from "@nextui-org/checkbox";
 
@@ -56,7 +63,9 @@ export default function ShoppingCart() {
     <article className="min-h-screen pt-longer2 px-longer4 flex justify-between">
       <section className="w-[68%]">
         <section className="sticky top-0 bg-custom-white z-20">
-          <h1 className="font-bold text-2xl border-b pb-4">Cart</h1>
+          <h1 className="text-custom-black font-bold text-2xl border-b pb-4">
+            Cart
+          </h1>
           <section className="flex justify-between items-center border-b-2 w-full">
             <section className="flex gap-2 py-4">
               <Checkbox
@@ -99,8 +108,8 @@ export default function ShoppingCart() {
           })}
         </section>
       </section>
-      <section className="w-[30%] relative">
-        <section className="fixed">HERE</section>
+      <section className="w-[30%]">
+        <CardTotal />
       </section>
     </article>
   );
