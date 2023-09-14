@@ -4,6 +4,10 @@ import { useQuery, useMutation } from "react-query";
 // Api routes
 import { getAllCarts } from "../../api/routes/Carts";
 
+// Miscellaneous
+import { Icon } from "@iconify/react";
+import CardItem from "../../components/CardItem";
+
 export default function ShoppingCart() {
   const { data } = useQuery(["cartsData"], () => getAllCarts());
 
@@ -23,17 +27,13 @@ export default function ShoppingCart() {
         <section className="grid gap-10 py-10">
           {data?.map((item) => {
             return (
-              <section key={item.id} className="flex gap-3 border-b pb-5">
-                <input type="checkbox" />
-                <figure className="rounded-lg w-32 h-28 overflow-hidden">
-                  <img
-                    src={item.thumbnailUrl}
-                    alt={item.name}
-                    className="object-contain"
-                  />
-                </figure>
-                <section></section>
-              </section>
+              <CardItem
+                key={item.id}
+                thumbnailUrl={item?.thumbnailUrl}
+                name={item?.name}
+                price={item?.price}
+                quantity={item?.quantity}
+              />
             );
           })}
         </section>
