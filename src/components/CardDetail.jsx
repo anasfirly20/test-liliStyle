@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 // Miscellaneous
 import { Link } from "react-router-dom";
@@ -7,8 +6,6 @@ import { formatNumber } from "../helpers/utils";
 import { Icon } from "@iconify/react";
 
 export default function CardDetail({ name, price, thumbnailUrl, quantity }) {
-  const navigate = useNavigate();
-
   return (
     <>
       <Link to={-1} className="absolute top-10 left-10 flex items-center group">
