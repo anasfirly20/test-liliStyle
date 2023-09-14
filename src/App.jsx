@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// Miscellaneous
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { RingLoader } from "react-spinners";
+import { Toaster } from "react-hot-toast";
+import { Suspense } from "react";
+
+// Pages
+import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
+import CartById from "./pages/CartById/CartById";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <BrowserRouter>
+        <Toaster
+          toastOptions={{
+            duration: 2000,
+          }}
+        />
+        <Suspense
+          fallback={
+            <section className="flex flex-col items-center justify-center min-h-screen">
+              <RingLoader color="#3a6afd" />
+            </section>
+          }
+        >
+          <Routes>
+            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/" element={<ShoppingCart />} />
+            <Route path="/:id" element={<CartById />} />
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
