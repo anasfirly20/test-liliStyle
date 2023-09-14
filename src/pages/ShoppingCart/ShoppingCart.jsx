@@ -8,8 +8,8 @@ export default function ShoppingCart() {
   const { data } = useQuery(["cartsData"], () => getAllCarts());
 
   return (
-    <div>
-      <h1>ShoppingCart</h1>
-    </div>
+    <article>
+      <h1>Cart</h1>
+    </article>
   );
 }
