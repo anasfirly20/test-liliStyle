@@ -1,6 +1,8 @@
 import { Icon } from "@iconify/react";
 import { Checkbox } from "@nextui-org/checkbox";
 
+import toast from "react-hot-toast";
+
 export default function CardItem({
   thumbnailUrl,
   id,
@@ -11,6 +13,8 @@ export default function CardItem({
   toggleItemChecked,
   setDataItems,
 }) {
+  const oneQuantity = quantity === 1;
+
   // handleIncrement
   const handleIncrement = (itemId) => {
     setDataItems((prevDataItems) =>
@@ -29,6 +33,14 @@ export default function CardItem({
         )
       );
     }
+  };
+
+  // handleDelete Item
+  const handleDelete = (itemId) => {
+    setDataItems((prevDataItems) =>
+      prevDataItems.filter((item) => item.id !== itemId)
+    );
+    toast.success(`${name} has been deleted`);
   };
 
   return (
@@ -50,7 +62,7 @@ export default function CardItem({
         </section>
       </section>
       <section className="flex gap-12 self-end">
-        <button type="button">
+        <button type="button" onClick={() => handleDelete(id)}>
           <Icon
             icon="material-symbols:delete-outline"
             fontSize={25}
@@ -61,14 +73,20 @@ export default function CardItem({
           <button
             type="button"
             className={`border-2 rounded-full ${
-              quantity === 1
+              oneQuantity
                 ? "border-custom-gray-2"
                 : "border-custom-yellow active:opacity-70"
             }`}
             onClick={() => handleDecrement(id)}
-            disabled={quantity === 1 ? true : false}
+            disabled={oneQuantity ? true : false}
           >
-            <Icon icon="ri:subtract-fill" fontSize={25} className="p-1" />
+            <Icon
+              icon="ri:subtract-fill"
+              fontSize={25}
+              className={`p-1 ${
+                oneQuantity ? "text-custom-gray-2" : "text-black"
+              }`}
+            />
           </button>
           <p className="border-b w-full px-6">{quantity}</p>
           <button
