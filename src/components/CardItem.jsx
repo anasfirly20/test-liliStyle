@@ -1,11 +1,21 @@
 import { Icon } from "@iconify/react";
 
-// eslint-disable-next-line react/prop-types
-export default function CardItem({ thumbnailUrl, name, price, quantity }) {
+export default function CardItem({
+  thumbnailUrl,
+  name,
+  price,
+  quantity,
+  isCheckedAll,
+  isChecked,
+}) {
   return (
     <section className="flex justify-between border-b pb-5">
       <section className="flex gap-2">
-        <input type="checkbox" className="self-start" />
+        <input
+          type="checkbox"
+          className="self-start"
+          checked={isCheckedAll ? true : false}
+        />
         <figure className="rounded-lg w-32 h-28 overflow-hidden">
           <img src={thumbnailUrl} alt={name} className="object-contain" />
         </figure>
