@@ -17,7 +17,7 @@ export default function ShoppingCart() {
   const [dataItems, setDataItems] = useState(null);
   const [isCheckedAll, setIsCheckedAll] = useState(true);
 
-  // Add a new isChecked prop & store the data from API inside a new state
+  // Add a new prop "isChecked" & store the data from API inside a new state
   useEffect(() => {
     if (data) {
       const updatedData = data.map((item) => ({
@@ -47,7 +47,7 @@ export default function ShoppingCart() {
 
   // handle delete all
   const handleDeleteAll = () => {
-    if (isCheckedAll) {
+    if (isCheckedAll && dataItems.length) {
       setDataItems([]);
       setIsCheckedAll(false);
       toast.success("All items in the cart have been deleted");
@@ -69,7 +69,7 @@ export default function ShoppingCart() {
           <section className="flex justify-between items-center border-b-2 w-full">
             <section className="flex gap-2 py-4">
               <Checkbox
-                size="md"
+                size="lg"
                 color="warning"
                 isSelected={isCheckedAll}
                 onValueChange={handleCheckedAll}
@@ -84,7 +84,7 @@ export default function ShoppingCart() {
                   : "active:opacity-80 text-blue-400"
               }`}
               onClick={handleDeleteAll}
-              disabled={!isCheckedAll}
+              disabled={!isCheckedAll ? true : false}
             >
               Delete
             </button>

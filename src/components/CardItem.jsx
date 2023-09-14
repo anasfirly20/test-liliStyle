@@ -47,7 +47,7 @@ export default function CardItem({
     <section className="flex justify-between border-b pb-5">
       <section className="flex gap-2">
         <Checkbox
-          size="md"
+          size="lg"
           color="warning"
           className="self-start"
           isSelected={isChecked}
@@ -56,9 +56,12 @@ export default function CardItem({
         <figure className="rounded-lg w-32 h-28 overflow-hidden">
           <img src={thumbnailUrl} alt={name} className="object-contain" />
         </figure>
-        <section>
-          <h4>{name}</h4>
-          <h4>Rp.{price}</h4>
+        <section className="flex flex-col justify-between">
+          <section>
+            <h4>{name}</h4>
+            <h4 className="text-sm">Rp.{price}</h4>
+          </section>
+          <h4 className="font-semibold">Total Harga: Rp.{price * quantity}</h4>
         </section>
       </section>
       <section className="flex gap-12 self-end">
