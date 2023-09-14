@@ -50,7 +50,7 @@ export default function ShoppingCart() {
     if (isCheckedAll && dataItems.length) {
       setDataItems([]);
       setIsCheckedAll(false);
-      toast.success("All items in the cart have been deleted");
+      toast.success("Semua barang telah dihapus");
     }
   };
 

@@ -44,7 +44,7 @@ export default function CardItem({
     setDataItems((prevDataItems) =>
       prevDataItems.filter((item) => item.id !== itemId)
     );
-    toast.success(`${name} has been removed from the cart`);
+    toast.success(`Produk ${name} telah dihapus`);
   };
 
   return (

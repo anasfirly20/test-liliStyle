@@ -1,8 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+// Miscellaneous
 import { Link } from "react-router-dom";
 import { formatNumber } from "../helpers/utils";
+import { Icon } from "@iconify/react";
 
 export default function CardDetail({
   name,
@@ -15,8 +17,13 @@ export default function CardDetail({
 
   return (
     <>
-      <Link to={-1} className="absolute top-10 left-10">
-        Go back
+      <Link to={-1} className="absolute top-10 left-10 flex items-center group">
+        <Icon
+          icon="iconamoon:arrow-left-2-light"
+          fontSize={30}
+          className="group-hover:-translate-x-2 animate-longer3"
+        />
+        Kembali
       </Link>
       <section className="border rounded-lg overflow-hidden">
         <figure>
@@ -27,11 +34,11 @@ export default function CardDetail({
           <p>Rp{price && formatNumber(price)}</p>
           <section className="flex justify-between">
             <section className="grid">
-              <p>Jumlah barang</p>
+              <p className="underline underline-offset-2">Jumlah barang</p>
               <p>x{quantity}</p>
             </section>
             <section className="grid">
-              <p>Total Harga</p>
+              <p className="underline underline-offset-2">Total Harga</p>
               <span className="font-semibold">
                 Rp{formatNumber(quantity * price)}
               </span>
