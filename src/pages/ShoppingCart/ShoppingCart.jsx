@@ -20,6 +20,23 @@ export default function ShoppingCart() {
             Delete
           </button>
         </section>
+        <section className="grid gap-10 py-10">
+          {data?.map((item) => {
+            return (
+              <section key={item.id} className="flex gap-3 border-b pb-5">
+                <input type="checkbox" />
+                <figure className="rounded-lg w-32 h-28 overflow-hidden">
+                  <img
+                    src={item.thumbnailUrl}
+                    alt={item.name}
+                    className="object-contain"
+                  />
+                </figure>
+                <section></section>
+              </section>
+            );
+          })}
+        </section>
       </section>
     </article>
   );
