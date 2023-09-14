@@ -109,7 +109,7 @@ export default function ShoppingCart() {
         </section>
       </section>
       <section className="w-[30%]">
-        <CardTotal />
+        <CardTotal dataItems={dataItems} />
       </section>
     </article>
   );
