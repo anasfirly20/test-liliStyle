@@ -15,18 +15,20 @@ export default function CardItem({ thumbnailUrl, name, price, quantity }) {
         </section>
       </section>
       <section className="flex gap-12 self-end">
-        <Icon
-          icon="material-symbols:delete-outline"
-          fontSize={30}
-          color="#6b6b6b"
-        />
+        <button type="button">
+          <Icon
+            icon="material-symbols:delete-outline"
+            fontSize={25}
+            color="#6b6b6b"
+          />
+        </button>
         <section className="flex items-center gap-3">
-          <button className="border-2 rounded-full">
-            <Icon icon="material-symbols:add" fontSize={25} className=" p-1" />
+          <button type="button" className="border-2 rounded-full">
+            <Icon icon="ri:subtract-fill" fontSize={25} className=" p-1" />
           </button>
           <p className="border-b w-full px-6">{quantity}</p>
-          <button className="border-2 rounded-full">
-            <Icon icon="ri:subtract-fill" fontSize={25} className=" p-1" />
+          <button type="button" className="border-2 rounded-full">
+            <Icon icon="material-symbols:add" fontSize={25} className=" p-1" />
           </button>
         </section>
       </section>
