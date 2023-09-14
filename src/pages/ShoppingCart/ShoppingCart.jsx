@@ -95,12 +95,7 @@ export default function ShoppingCart() {
             return (
               <CardItem
                 key={item?.id}
-                id={item?.id}
-                thumbnailUrl={item?.thumbnailUrl}
-                name={item?.name}
-                price={item?.price}
-                quantity={item?.quantity}
-                isChecked={item?.isChecked}
+                {...item}
                 toggleItemChecked={toggleItemChecked}
                 setDataItems={setDataItems}
               />
