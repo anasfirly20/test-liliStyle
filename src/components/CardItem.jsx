@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import { useEffect } from "react";
 
 export default function CardItem({
   thumbnailUrl,
@@ -7,6 +8,7 @@ export default function CardItem({
   quantity,
   isCheckedAll,
   isChecked,
+  onToggleChecked,
 }) {
   return (
     <section className="flex justify-between border-b pb-5">
@@ -14,7 +16,8 @@ export default function CardItem({
         <input
           type="checkbox"
           className="self-start"
-          checked={isCheckedAll ? true : false}
+          checked={isCheckedAll ? isChecked : false}
+          onChange={onToggleChecked}
         />
         <figure className="rounded-lg w-32 h-28 overflow-hidden">
           <img src={thumbnailUrl} alt={name} className="object-contain" />
