@@ -1,12 +1,14 @@
 // Miscellaneous
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { RingLoader } from "react-spinners";
 import { Toaster } from "react-hot-toast";
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 
 // Pages
-import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
-import CartById from "./pages/CartById/CartById";
+const ShoppingCart = lazy(() => import("./pages/ShoppingCart/ShoppingCart"));
+const CartDetail = lazy(() => import("./pages/CartById/CartById"));
+
+// NextUI
+import { Spinner } from "@nextui-org/spinner";
 
 function App() {
   return (
@@ -20,14 +22,14 @@ function App() {
         <Suspense
           fallback={
             <section className="flex flex-col items-center justify-center min-h-screen">
-              <RingLoader color="#3a6afd" />
+              <Spinner size="lg" color="warning" />
             </section>
           }
         >
           <Routes>
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/" element={<ShoppingCart />} />
-            <Route path="/:id" element={<CartById />} />
+            <Route path="/:id" element={<CartDetail />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

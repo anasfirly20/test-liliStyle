@@ -4,7 +4,7 @@ import { Modal, ModalContent, ModalHeader, ModalBody } from "@nextui-org/modal";
 // Utils
 import { formatNumber } from "../helpers/utils";
 
-export default function App({ isOpen, onOpen, onOpenChange, totalCost }) {
+export default function App({ isOpen, onOpenChange, totalCost }) {
   return (
     <>
       <Modal backdrop="blur" isOpen={isOpen} onOpenChange={onOpenChange}>
