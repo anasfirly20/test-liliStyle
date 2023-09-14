@@ -6,13 +6,7 @@ import { Link } from "react-router-dom";
 import { formatNumber } from "../helpers/utils";
 import { Icon } from "@iconify/react";
 
-export default function CardDetail({
-  name,
-  price,
-  thumbnailUrl,
-  quantity,
-  id,
-}) {
+export default function CardDetail({ name, price, thumbnailUrl, quantity }) {
   const navigate = useNavigate();
 
   return (

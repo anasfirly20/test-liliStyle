@@ -48,7 +48,7 @@ export default function CardItem({
   };
 
   return (
-    <section className="flex justify-between border-b pb-5">
+    <section className="flex flex-wrap gap-y-6 justify-between border-b pb-5">
       <section className="flex gap-2">
         <Checkbox
           size="lg"
@@ -77,7 +77,7 @@ export default function CardItem({
           </h4>
         </section>
       </section>
-      <section className="flex gap-12 self-end">
+      <section className="flex gap-12 self-end max-md:flex-row-reverse max-md:w-full">
         <button type="button" onClick={() => handleDelete(id)}>
           <Icon
             icon="material-symbols:delete-outline"

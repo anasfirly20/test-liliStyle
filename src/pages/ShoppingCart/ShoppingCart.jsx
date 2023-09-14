@@ -54,14 +54,9 @@ export default function ShoppingCart() {
     }
   };
 
-  // DEBUG
-  useEffect(() => {
-    // console.log(">>", dataItems);
-  }, [dataItems]);
-
   return (
-    <article className="min-h-screen pt-longer2 px-longer4 flex justify-between">
-      <section className="w-[68%]">
+    <article className="min-h-screen pt-longer2 px-normal xl:px-longer4 flex flex-wrap justify-between">
+      <section className="w-full xl:w-[68%]">
         <section className="sticky top-0 bg-custom-white z-20">
           <h1 className="text-custom-black font-bold text-2xl border-b pb-4">
             Cart
@@ -103,7 +98,7 @@ export default function ShoppingCart() {
           })}
         </section>
       </section>
-      <section className="w-[30%]">
+      <section className="w-full xl:w-[30%]">
         <CardTotal dataItems={dataItems} isCheckedAll={isCheckedAll} />
       </section>
     </article>

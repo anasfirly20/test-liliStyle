@@ -23,7 +23,7 @@ export default function CardTotal({ dataItems, isCheckedAll }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <section className="fixed border w-[25%] p-5 rounded-lg">
+    <section className="xl:fixed border w-full xl:w-[25%] p-5 rounded-lg">
       <h1 className="font-bold text-2xl text-custom-black">
         Ringkasan Belanja
       </h1>
